@@ -4,7 +4,8 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Facades\App\Accounts\YouTube;
+use Facades\App\Accounts\Twitter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AccountTest extends TestCase
@@ -23,7 +24,7 @@ class AccountTest extends TestCase
         ]);
 
         // account scans for stats
-        $account->trackFollowers(120);
+        $account->trackFollowers(10);
 
         // gets user total follow #
         $this->assertEquals(10, $user->totalFollowers);
@@ -33,5 +34,21 @@ class AccountTest extends TestCase
 
         // gets user follow count for a single account for last 7 days
         $this->assertEquals([0, 0, 0, 0, 0, 0, 10], $user->accounts()->first()->last7Days);
+    }
+
+    function test_grabs_twitter_followers()
+    {
+        $twitter = Twitter::fetch('gjreasoner');
+
+        $this->assertEquals('gjreasoner', $twitter->username);
+        $this->assertNotNull($twitter->followers);
+    }
+
+    function test_grabs_youtube_subscribers()
+    {
+        $youtube = YouTube::fetch('941yT_1r_3I');
+
+        $this->assertEquals('941yT_1r_3I', $youtube->video);
+        $this->assertNotNull($youtube->subscribers);
     }
 }
