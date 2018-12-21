@@ -2,27 +2,14 @@
 
 namespace App\Accounts;
 
-class Twitter
+class Twitter extends Base
 {
     public $username;
     public $followers;
 
+    protected $url = 'https://twitter.com/%s';
 
-    function getSource()
-    {
-        return cache()->remember("twitter_$this->username", 60, function () {
-            return file_get_contents("https://twitter.com/$this->username");
-        });
-    }
-
-    function setUsername($username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    function followers()
+    function getFollowers()
     {
         $html = $this->getSource();
 
@@ -33,12 +20,5 @@ class Twitter
         $this->followers = intval($html);
 
         return $this;
-    }
-
-    function fetch(string $username)
-    {
-        return $this
-            ->setUsername($username)
-            ->followers();
     }
 }

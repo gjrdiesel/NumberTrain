@@ -23,10 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        \Facades\App\Accounts\YouTube::fetch('UCMa2GeloonhtykTGTmVLEiQ');
-
-        dd('rmove');
-
         return view('home')
             ->with('user', auth()->user());
     }

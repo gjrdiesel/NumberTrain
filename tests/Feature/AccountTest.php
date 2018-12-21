@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
-use Facades\App\Accounts\YouTube;
+use Facades\App\Accounts\YouTube\Channel;
 use Facades\App\Accounts\Twitter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -46,9 +46,10 @@ class AccountTest extends TestCase
 
     function test_grabs_youtube_subscribers()
     {
-        $youtube = YouTube::fetch('941yT_1r_3I');
+        $youtube = Channel::fetch('UCMa2GeloonhtykTGTmVLEiQ');
 
-        $this->assertEquals('941yT_1r_3I', $youtube->video);
+        $this->assertEquals('UCMa2GeloonhtykTGTmVLEiQ', $youtube->username);
+        $this->assertNotNull($youtube->views);
         $this->assertNotNull($youtube->subscribers);
     }
 }
