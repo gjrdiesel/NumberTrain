@@ -35,7 +35,11 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->user()->accounts()->create(
+            $request->only('username', 'type')
+        );
+
+        return redirect()->to('/home');
     }
 
     /**

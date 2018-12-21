@@ -3,43 +3,48 @@
 @section('content')
     <div class="container">
         <div class="row mb-5">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <add-account-button>
                     {{ csrf_field() }}
                 </add-account-button>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="d-none" for="date_range">Change Date Range</label>
+                    <select name="date_range" id="date_range" class="form-control">
+                        <option>Last 7 days</option>
+                        <option>Last 3 months</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <p>Last checked, 5 mins ago, you are up</p>
-                <h1>+51 Followers</h1>
+            <div class="col-md-6 text-center justify-content-center d-flex flex-column">
+                <p>Last checked, {{ $user->lastUpdate }}, you have</p>
+                <h1>{{ $user->totalFollowers }} Followers</h1>
                 <div class="row">
-                    <div class="col-md-4">
-                        Twitter
-                    </div>
-                    <div class="col-md-4">
-                        Youtube
-                    </div>
-                    <div class="col-md-4">
-                        Instagram
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        Twitter
-                    </div>
-                    <div class="col-md-4">
-                        Youtube
-                    </div>
-                    <div class="col-md-4">
-                        Instagram
-                    </div>
+                    @foreach($user->accounts as $account)
+                        <div class="col-md-4">
+                            <div>
+                                {{ $account->totalFollowers }}
+                            </div>
+                            <div>
+                                {{ $account->type }}
+                            </div>
+                        </div>
+                    @endforeach
+                    @if($user->accounts->isEmpty())
+                        <div class="col-md-12">
+                            This place looks empty. <br/>
+                            Add a social media account above.
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        Total progress the last 7 days:
+                        <bar-chart :data="{{ json_encode($user->last7Days) }}"></bar-chart>
                     </div>
                 </div>
             </div>

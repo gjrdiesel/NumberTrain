@@ -18,8 +18,8 @@ class CreateAccountsTable extends Migration
             $table->bigInteger('user_id');
             $table->string('username');
             $table->enum('type', [
-                'youtube', 'twitter', 'facebook', 'twitch', 'instagram',
-                'vimeo', 'reddit'
+                'YouTube', 'Twitter', 'Facebook', 'Twitch', 'Instagram',
+                'Vimeo', 'Reddit'
             ]);
             $table->timestamps();
         });

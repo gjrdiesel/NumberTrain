@@ -14,7 +14,7 @@ class AccountTest extends TestCase
     public function test_base_api()
     {
         // create user
-        $user = factory(User::class)->create();
+        $user = User::first() ?? factory(User::class)->create();
 
         // user adds account
         $account = $user->addAccount([
@@ -23,7 +23,7 @@ class AccountTest extends TestCase
         ]);
 
         // account scans for stats
-        $account->trackFollowers(10);
+        $account->trackFollowers(120);
 
         // gets user total follow #
         $this->assertEquals(10, $user->totalFollowers);

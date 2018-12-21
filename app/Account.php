@@ -23,4 +23,9 @@ class Account extends Model
         // Will eventually return last 7 checks
         return [0, 0, 0, 0, 0, 0, 10];
     }
+
+    function getTotalFollowersAttribute(): int
+    {
+        return $this->checks()->latest()->first()->count ?? 0;
+    }
 }

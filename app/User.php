@@ -38,6 +38,11 @@ class User extends Authenticatable
         return 10;
     }
 
+    function getLastUpdateAttribute(): string
+    {
+        return $this->updated_at->diffForHumans();
+    }
+
     function getLast7DaysAttribute(): array
     {
         return [0, 0, 0, 0, 0, 0, 10];
