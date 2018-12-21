@@ -27,4 +27,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    function addAccount(array $data): Account
+    {
+        return $this->accounts()->create($data);
+    }
+
+    function getTotalFollowersAttribute(): int
+    {
+        return 10;
+    }
+
+    function getLast7DaysAttribute(): array
+    {
+        return [0, 0, 0, 0, 0, 0, 10];
+    }
+
+    function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
 }
