@@ -16,11 +16,8 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('user_id');
-            $table->string('username');
-            $table->enum('type', [
-                'YouTube', 'Twitter', 'Facebook', 'Twitch', 'Instagram',
-                'Vimeo', 'Reddit'
-            ]);
+            $table->longText('username');
+            $table->longText('type');
             $table->timestamps();
         });
     }

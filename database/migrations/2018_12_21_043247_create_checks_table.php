@@ -17,6 +17,7 @@ class CreateChecksTable extends Migration
             $table->increments('id');
             $table->bigInteger('account_id');
             $table->bigInteger('count');
+            $table->longText('name');
             $table->timestamps();
         });
     }

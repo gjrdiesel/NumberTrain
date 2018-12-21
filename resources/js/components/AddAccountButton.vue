@@ -20,15 +20,14 @@
                         <p>Start tracking a new account</p>
 
                         <div class="form-group">
-                            <label for="username">Username</label>
+                            <label for="username">Username/Channel/ID</label>
                             <input type="text" class="form-control" name="username" id="username">
                         </div>
 
                         <div class="form-group">
                             <label for="type">Type of Account</label>
                             <select name="type" id="type" class="form-control">
-                                <option>Youtube</option>
-                                <option>Twitter</option>
+                                <option v-for="type in types" :value="type.value">{{ type.name }}</option>
                             </select>
                         </div>
 
@@ -44,5 +43,9 @@
     </div>
 </template>
 <script>
-    export default {}
+    export default {
+        props: {
+            types: Array
+        }
+    }
 </script>

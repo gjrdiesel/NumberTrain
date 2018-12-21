@@ -24,7 +24,7 @@ class AccountTest extends TestCase
         ]);
 
         // account scans for stats
-        $account->trackFollowers(10);
+        $account->track(10, 'Youtube Subscribers');
 
         // gets user total follow #
         $this->assertEquals(10, $user->totalFollowers);
@@ -38,7 +38,16 @@ class AccountTest extends TestCase
 
     function test_grabs_twitter_followers()
     {
-        $twitter = Twitter::fetch('gjreasoner');
+        // create user
+        $user = User::first() ?? factory(User::class)->create();
+
+        // user adds account
+        $account = $user->addAccount([
+            'username' => 'gjreasoner',
+            'type' => Twitter::class
+        ]);
+
+        $twitter = Twitter::fetch($account);
 
         $this->assertEquals('gjreasoner', $twitter->username);
         $this->assertNotNull($twitter->followers);
@@ -46,9 +55,18 @@ class AccountTest extends TestCase
 
     function test_grabs_youtube_subscribers()
     {
-        $youtube = Channel::fetch('UCMa2GeloonhtykTGTmVLEiQ');
+        // create user
+        $user = User::first() ?? factory(User::class)->create();
 
-        $this->assertEquals('UCMa2GeloonhtykTGTmVLEiQ', $youtube->username);
+        // user adds account
+        $account = $user->addAccount([
+            'username' => 'UCMa2GeloonhtykTGTmVLEiQ',
+            'type' => Channel::class
+        ]);
+
+        $youtube = Channel::fetch($account);
+
+        $this->assertEquals($account->username, $youtube->username);
         $this->assertNotNull($youtube->views);
         $this->assertNotNull($youtube->subscribers);
     }

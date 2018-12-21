@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-6">
-                <add-account-button>
+                <add-account-button :types="{{ \App\Account::getTypes() }}">
                     {{ csrf_field() }}
                 </add-account-button>
             </div>

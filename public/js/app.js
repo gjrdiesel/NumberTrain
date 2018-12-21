@@ -1807,8 +1807,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    types: Array
+  }
+});
 
 /***/ }),
 
@@ -68719,7 +68722,33 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(0),
                 _vm._v(" "),
-                _vm._m(1),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("p", [_vm._v("Start tracking a new account")]),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "type" } }, [
+                      _vm._v("Type of Account")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control",
+                        attrs: { name: "type", id: "type" }
+                      },
+                      _vm._l(_vm.types, function(type) {
+                        return _c(
+                          "option",
+                          { domProps: { value: type.value } },
+                          [_vm._v(_vm._s(type.name))]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
                 _vm._m(2)
               ],
@@ -68761,31 +68790,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("p", [_vm._v("Start tracking a new account")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "username" } }, [_vm._v("Username")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "username", id: "username" }
-        })
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "username" } }, [
+        _vm._v("Username/Channel/ID")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "type" } }, [_vm._v("Type of Account")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          { staticClass: "form-control", attrs: { name: "type", id: "type" } },
-          [
-            _c("option", [_vm._v("Youtube")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("Twitter")])
-          ]
-        )
-      ])
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", name: "username", id: "username" }
+      })
     ])
   },
   function() {

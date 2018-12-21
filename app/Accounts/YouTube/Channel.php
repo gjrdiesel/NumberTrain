@@ -22,6 +22,8 @@ class Channel extends Base
 
         $this->subscribers = intval($html);
 
+        $this->account->track($this->subscribers, 'Youtube Subscribers');
+
         return $this;
     }
 
@@ -34,6 +36,8 @@ class Channel extends Base
         $html = str_replace(',', '', $html);
 
         $this->views = intval($html);
+
+        $this->account->track($this->subscribers, 'Total Youtube Views');
 
         return $this;
     }

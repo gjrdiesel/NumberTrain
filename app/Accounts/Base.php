@@ -2,8 +2,12 @@
 
 namespace App\Accounts;
 
+use App\Account;
+
 class Base
 {
+    protected $account;
+
     function getSource()
     {
         try {
@@ -38,11 +42,13 @@ class Base
         return $this;
     }
 
-    function fetch(string $username)
+    function fetch(Account $account)
     {
+        $this->account = $account;
+
         return $this
-            ->setUsername($username)
-            ->setUrl(sprintf($this->url, $username))
+            ->setUsername($account->username)
+            ->setUrl(sprintf($this->url, $account->username))
             ->grabAllResources();
     }
 

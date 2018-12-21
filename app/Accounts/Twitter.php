@@ -19,6 +19,8 @@ class Twitter extends Base
 
         $this->followers = intval($html);
 
+        $this->account->track($this->followers, 'Twitter Followers');
+
         return $this;
     }
 }
