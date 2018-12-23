@@ -1,8 +1,13 @@
 <template>
-    <div class="my-2">
+    <div class="my-2 text-center">
         <canvas width="100" height="30"></canvas>
     </div>
 </template>
+<style scoped>
+    div canvas {
+        margin: 0 auto;
+    }
+</style>
 <script>
     export default {
         props: {
