@@ -86,6 +86,8 @@
 
         <div class="links">
             <a href="/login">Keep track of how many followers you are gaining</a>
+            <br><br>
+            Built by <a href="https://twitter.com/gjreasoner">@gjreasoner</a> live on <a href="https://www.twitch.tv/gjrdiesel">twitch.tv</a>
         </div>
     </div>
 </div>
