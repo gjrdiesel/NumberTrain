@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>Last checked, {{ $user->lastUpdate }}, you have</p>
+                <h1 class="mb-5 follow-count">
+                    {{ number_format($user->totalFollowers) }}
+                    <small>Total Followers</small>
+                </h1>
+            </div>
+        </div>
         <div class="row mb-5">
             <div class="col-md-6">
                 <add-account-button :types="{{ \App\Account::getTypes() }}">
@@ -20,11 +29,6 @@
         </div>
         <div class="row">
             <div class="col-md-6 text-center justify-content-center d-flex flex-column">
-                <p>Last checked, {{ $user->lastUpdate }}, you have</p>
-                <h1 class="mb-5 follow-count">
-                    {{ number_format($user->totalFollowers) }}
-                    <small>Total Followers</small>
-                </h1>
                 <div class="row">
                     @foreach($user->accounts as $account)
                         <div class="col-md-6">
@@ -54,7 +58,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <bar-chart :data="{{ json_encode($user->last7Days) }}"></bar-chart>
+                        <chart :data="{{ json_encode($user->last7Days) }}"></chart>
                     </div>
                 </div>
             </div>

@@ -64,7 +64,7 @@ class Account extends Model
     function getLast7DaysAttribute(): array
     {
         // Will eventually return last 7 checks
-        return [0, 0, 0, 0, 0, 0, 10];
+        return [rand(0,100), rand(0,100), rand(0,100), rand(0,100), rand(0,100), rand(0,100), rand(0,100)];
     }
 
     function getTotalFollowersAttribute(): int

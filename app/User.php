@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     function getLast7DaysAttribute(): array
     {
-        return [0, 0, 0, 0, 0, 0, 10];
+        return [rand(0,100), rand(0,100), rand(0,100), rand(0,100), rand(0,100), rand(0,100), rand(0,100)];
     }
 
     function accounts()
