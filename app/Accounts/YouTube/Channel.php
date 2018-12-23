@@ -27,6 +27,18 @@ class Channel extends Base
         return $this;
     }
 
+    function getAlias()
+    {
+        $html = $this->getSource();
+
+        $html = str_after($html, '<meta property="og:title" content="');
+        $alias = str_before($html, '">');
+
+        $this->account->update(compact('alias'));
+
+        return $this;
+    }
+
     function getViews()
     {
         $html = $this->getSource();

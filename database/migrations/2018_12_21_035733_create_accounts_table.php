@@ -18,6 +18,7 @@ class CreateAccountsTable extends Migration
             $table->bigInteger('user_id');
             $table->longText('username');
             $table->longText('type');
+            $table->longText('alias')->nullable();
             $table->timestamps();
         });
     }
