@@ -3,6 +3,10 @@
 namespace App\Accounts;
 
 use App\Account;
+use Facebook\WebDriver\Chrome\ChromeOptions;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Laravel\Dusk\Browser;
 
 class Base
 {
@@ -11,8 +15,30 @@ class Base
     protected $account;
     protected $username;
 
+    protected $browser;
+
+    function __construct()
+    {
+        $options = (new ChromeOptions)->addArguments([
+            '--disable-gpu',
+            '--headless',
+            '--window-size=1920,1080',
+        ]);
+
+        $driver = RemoteWebDriver::create(
+            'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
+            ChromeOptions::CAPABILITY, $options
+        )
+        );
+
+        $this->browser = new Browser($driver);
+    }
+
     function getSource()
     {
+
+        dd($this->browser->visit($this->getUrl()));
+
         try {
             return cache()->remember(base64_encode($this->getUrl()), 60, function () {
                 return file_get_contents($this->getUrl());
