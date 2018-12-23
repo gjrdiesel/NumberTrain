@@ -23,11 +23,11 @@
                 <p>Last checked, {{ $user->lastUpdate }}, you have</p>
                 <h1 class="mb-5 follow-count">
                     {{ number_format($user->totalFollowers) }}
-                    <small>Followers</small>
+                    <small>Total Followers</small>
                 </h1>
                 <div class="row">
                     @foreach($user->accounts as $account)
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="card mb-5">
                                 <div class="card-body">
                                     <div>
@@ -35,7 +35,9 @@
                                     </div>
                                     <sparkline :data="{{ json_encode($account->last7Days) }}"></sparkline>
                                     <div>
-                                        <i class="fab fa-{{ strtolower($account->type) }}"></i> {{ $account->username }}
+                                        <a href="{{ $account->link }}" target="_blank">
+                                            <i class="fab fa-{{ strtolower($account->type) }}"></i> {{ $account->alias }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>

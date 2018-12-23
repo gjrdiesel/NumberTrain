@@ -36,6 +36,22 @@ class CreateChecksTable extends Migration
         ]);
 
 
+        \App\User::first()->addAccount([
+            'username' => 'UC6z07Hh9Muy6urJgA0F0azg',
+            'type' => \Facades\App\Accounts\YouTube\Channel::class
+        ]);
+
+        \App\User::first()->addAccount([
+            'username' => 'UCuuZHDQV1LRmeuRFIOETO2A',
+            'type' => \Facades\App\Accounts\YouTube\Channel::class
+        ]);
+
+        \App\User::first()->addAccount([
+            'username' => 'UCS4I5wtqpPcGI3VuUnRLBYg',
+            'type' => \Facades\App\Accounts\YouTube\Channel::class
+        ]);
+
+
     }
 
     /**

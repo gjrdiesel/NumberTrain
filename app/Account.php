@@ -36,6 +36,16 @@ class Account extends Model
         return self::cleanName($this->attributes['type']);
     }
 
+    function getLinkAttribute()
+    {
+        return $this->attributes['type']::getUrl($this->username);
+    }
+
+    function getAliasAttribute()
+    {
+        return $this->attributes['alias'] ?? $this->attributes['username'];
+    }
+
     function fetch()
     {
         $this->attributes['type']::fetch($this);

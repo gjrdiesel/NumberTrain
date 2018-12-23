@@ -29,9 +29,9 @@ class Base
         return $this;
     }
 
-    function getUrl()
+    function getUrl($username = null)
     {
-        return sprintf($this->url, $this->account->username);
+        return sprintf($this->url, $username ?? $this->account->username);
     }
 
     function fetch(Account $account)
