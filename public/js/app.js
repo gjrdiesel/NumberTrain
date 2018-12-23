@@ -68789,8 +68789,6 @@ var render = function() {
                 _c("div", { staticClass: "modal-body" }, [
                   _c("p", [_vm._v("Start tracking a new account")]),
                   _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "type" } }, [
                       _vm._v("Type of Account")
@@ -68811,7 +68809,9 @@ var render = function() {
                       }),
                       0
                     )
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
                 ]),
                 _vm._v(" "),
                 _vm._m(2)
