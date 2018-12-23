@@ -6,12 +6,15 @@ use App\Account;
 
 class Base
 {
+    public $url;
+
     protected $account;
+    protected $username;
 
     function getSource()
     {
         try {
-            return cache()->remember($this->cacheKey(), 60, function () {
+            return cache()->remember(base64_encode($this->getUrl()), 60, function () {
                 return file_get_contents($this->getUrl());
             });
         } catch (\Exception $e) {
@@ -26,20 +29,9 @@ class Base
         return $this;
     }
 
-    function cacheKey()
-    {
-        return __CLASS__ . '_' . $this->username;
-    }
-
     function getUrl()
     {
-        return $this->url;
-    }
-
-    function setUrl($url): self
-    {
-        $this->url = $url;
-        return $this;
+        return sprintf($this->url, $this->account->username);
     }
 
     function fetch(Account $account)
@@ -48,7 +40,6 @@ class Base
 
         return $this
             ->setUsername($account->username)
-            ->setUrl(sprintf($this->url, $account->username))
             ->grabAllResources();
     }
 

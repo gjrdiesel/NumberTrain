@@ -7,7 +7,7 @@ class Twitter extends Base
     public $username;
     public $followers;
 
-    protected $url = 'https://twitter.com/%s';
+    public $url = 'https://twitter.com/%s';
 
     function getFollowers()
     {

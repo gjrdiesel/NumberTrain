@@ -21,15 +21,23 @@
         <div class="row">
             <div class="col-md-6 text-center justify-content-center d-flex flex-column">
                 <p>Last checked, {{ $user->lastUpdate }}, you have</p>
-                <h1>{{ $user->totalFollowers }} Followers</h1>
+                <h1 class="mb-5 follow-count">
+                    {{ number_format($user->totalFollowers) }}
+                    <small>Followers</small>
+                </h1>
                 <div class="row">
                     @foreach($user->accounts as $account)
                         <div class="col-md-4">
-                            <div>
-                                {{ $account->totalFollowers }}
-                            </div>
-                            <div>
-                                {{ $account->type }}
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <div>
+                                        {{ number_format($account->totalFollowers) }}
+                                    </div>
+                                    <sparkline :data="{{ json_encode($account->last7Days) }}"></sparkline>
+                                    <div>
+                                        <i class="fab fa-{{ strtolower($account->type) }}"></i> {{ $account->username }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endforeach

@@ -10,7 +10,7 @@ class Channel extends Base
     public $subscribers;
     public $views;
 
-    protected $url = 'https://www.youtube.com/channel/%s/about';
+    public $url = 'https://www.youtube.com/channel/%s/about';
 
     function getFollowers()
     {

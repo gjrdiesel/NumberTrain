@@ -1,6 +1,6 @@
 <template>
     <div>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas width="400" height="400"></canvas>
     </div>
 </template>
 <script>
@@ -9,8 +9,8 @@
             data: Array,
         },
         mounted() {
-            var ctx = document.getElementById("myChart").getContext('2d');
-            var myLineChart = new Chart(ctx, {
+            var ctx = this.$el.querySelector('canvas').getContext('2d');
+            new Chart(ctx, {
                 "type": "line",
                 "data": {
                     "labels": [

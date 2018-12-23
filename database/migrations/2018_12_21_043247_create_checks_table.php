@@ -16,10 +16,26 @@ class CreateChecksTable extends Migration
         Schema::create('checks', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('account_id');
-            $table->bigInteger('count');
+            $table->bigInteger('number');
             $table->longText('name');
             $table->timestamps();
         });
+
+
+        \App\User::first()->addAccount([
+            'username' => 'gjreasoner',
+            'type' => \Facades\App\Accounts\Twitter::class
+        ]);
+        \App\User::first()->addAccount([
+            'username' => 'wesbos',
+            'type' => \Facades\App\Accounts\Twitter::class
+        ]);
+        \App\User::first()->addAccount([
+            'username' => 'magicalfort',
+            'type' => \Facades\App\Accounts\Twitter::class
+        ]);
+
+
     }
 
     /**

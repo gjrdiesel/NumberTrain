@@ -1,7 +1,7 @@
 <template>
     <div>
-        <button type="button" data-toggle="modal" data-target="#add-account" class="btn btn-outline-primary">Add
-            account
+        <button type="button" data-toggle="modal" data-target="#add-account" class="btn btn-outline-primary">
+            Add account
         </button>
 
         <div class="modal fade" id="add-account" tabindex="-1" role="dialog" aria-labelledby="add-account-label"

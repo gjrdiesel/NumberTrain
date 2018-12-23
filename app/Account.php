@@ -41,9 +41,9 @@ class Account extends Model
         $this->attributes['type']::fetch($this);
     }
 
-    function track(int $count, string $name)
+    function track(int $number, string $name)
     {
-        $this->checks()->create(compact('count', 'name'));
+        $this->checks()->create(compact('number', 'name'));
     }
 
     function checks()
@@ -59,7 +59,12 @@ class Account extends Model
 
     function getTotalFollowersAttribute(): int
     {
-        return $this->checks()->latest()->first()->count ?? 0;
+        return $this->checks()->latest()->first()->number ?? 0;
+    }
+
+    function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

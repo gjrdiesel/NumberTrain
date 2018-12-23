@@ -33,9 +33,18 @@ class User extends Authenticatable
         return $this->accounts()->create($data);
     }
 
+    function checks()
+    {
+        return $this->hasManyThrough(Check::class, Account::class);
+    }
+
     function getTotalFollowersAttribute(): int
     {
-        return 10;
+        return $this->checks()
+            ->groupBy('account_id')
+            ->latest('checks.updated_at')
+            ->where('name', 'like', '%Followers')
+            ->pluck('number')->sum();
     }
 
     function getLastUpdateAttribute(): string
