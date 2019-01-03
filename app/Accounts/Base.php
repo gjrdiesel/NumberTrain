@@ -3,6 +3,7 @@
 namespace App\Accounts;
 
 use App\Account;
+use Spatie\Browsershot\Browsershot;
 
 class Base
 {
@@ -15,7 +16,7 @@ class Base
     {
         try {
             return cache()->remember(base64_encode($this->getUrl()), 60, function () {
-                return file_get_contents($this->getUrl());
+                return Browsershot::url($this->getUrl())->bodyHtml();
             });
         } catch (\Exception $e) {
             return '';
