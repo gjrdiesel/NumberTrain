@@ -14,13 +14,9 @@ class Base
 
     function getSource()
     {
-        try {
-            return cache()->remember(base64_encode($this->getUrl()), 60, function () {
-                return Browsershot::url($this->getUrl())->bodyHtml();
-            });
-        } catch (\Exception $e) {
-            return '';
-        }
+        return cache()->remember(base64_encode($this->getUrl()), 60, function () {
+            return Browsershot::url($this->getUrl())->bodyHtml();
+        });
     }
 
     function setUsername($username)

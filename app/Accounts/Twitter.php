@@ -16,6 +16,7 @@ class Twitter extends Base
         $html = str_after($html, "data-nav=\"followers\"");
         $html = str_before($html, "data-is-compact=\"false\"");
         $html = str_after($html, "data-count=");
+        $html = str_replace(['"',' '],'',$html);
 
         $this->followers = intval($html);
 
